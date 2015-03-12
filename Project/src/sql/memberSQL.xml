@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+
+	<typeAlias alias="memDTO" type="project.bean.memberDTO"/>
+	
+	<insert id="insertMember" parameterClass="memDTO">
+		insert into PRO_MEMBER(memId, memPw, memName, memEmail) values (#memId#, #memPw#, #memName#, #memEmail#)
+		<!-- 회원가입시 프로젝트 멤버테이블에 값 추가 -->
+	</insert>
+	
+	<select id="userCheck" parameterClass="memDTO" resultClass="int">
+		select count(*) from PRO_MEMBER where memId=#memId# and memPw=#memPw#
+	</select>
+	
+</sqlMap>
+
